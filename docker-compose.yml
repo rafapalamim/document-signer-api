@@ -1,0 +1,44 @@
+version: '3'
+
+# networks:
+#   signature_network:
+
+# volumes:
+#   mariadb_data:
+
+services:
+
+  api:
+    container_name: signature_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/api
+    # networks:
+    #   - signature_network
+
+  # db:
+  #   container_name: mariadb-database
+  #   image: mariadb:11.2.3-jammy
+  #   restart: always
+  #   volumes:
+  #     - mariadb_data:/var/lib/mysql:Z
+  #     - .docker/mariadb:/docker-entrypoint-initdb.d
+  #   networks:
+  #     - signature_network
+  #   environment:
+  #     MARIADB_ROOT_PASSWORD: root
+
+  # db_viewer:
+  #   container_name: phpmyadmin
+  #   image: phpmyadmin:latest
+  #   restart: always
+  #   ports:
+  #     - 8081:80
+  #   environment:
+  #     - PMA_ARBITRARY=1
+  #   networks:
+  #     - signature_network

@@ -15,7 +15,6 @@ export enum PolicyPeriodTypeEnum {
 type PolicyType = {
     name: string,
     description: string | null,
-    policyIdentifier: string,
     type: PolicyTypeEnum,
     periodType: PolicyPeriodTypeEnum,
     periodValue: number,
@@ -37,10 +36,6 @@ export default class Policy extends BaseModel<PolicyType, string> {
         return this.data.description
     }
 
-    get policyIdentifier() : string {
-        return this.data.policyIdentifier
-    }
-
     get type(): PolicyTypeEnum {
         return this.data.type
     }
@@ -55,6 +50,10 @@ export default class Policy extends BaseModel<PolicyType, string> {
 
     get version(): number {
         return this.data.version
+    }
+
+    updateVersion(): void {
+        this.data.version++
     }
 
 }

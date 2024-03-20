@@ -10,7 +10,6 @@ describe('Policy domain model unit tests', () => {
             id: randomUUID(),
             name: 'test name',
             description: 'test description',
-            policyIdentifier: randomUUID(),
             type: PolicyTypeEnum.DOCUMENT,
             periodType: PolicyPeriodTypeEnum.YEAR,
             periodValue: 5,
@@ -23,7 +22,6 @@ describe('Policy domain model unit tests', () => {
         expect(policy.id).toEqual(input.id)
         expect(policy.name).toEqual(input.name)
         expect(policy.description).toEqual(input.description)
-        expect(policy.policyIdentifier).toEqual(input.policyIdentifier)
         expect(policy.type).toEqual(input.type)
         expect(policy.periodType).toEqual(input.periodType)
         expect(policy.periodValue).toEqual(input.periodValue)
@@ -37,7 +35,6 @@ describe('Policy domain model unit tests', () => {
             id: randomUUID(),
             name: 'test name',
             description: 'test description',
-            policyIdentifier: randomUUID(),
             type: PolicyTypeEnum.PERSON,
             periodType: PolicyPeriodTypeEnum.DAY,
             periodValue: 1,
@@ -50,7 +47,6 @@ describe('Policy domain model unit tests', () => {
         expect(policy.id).toEqual(input.id)
         expect(policy.name).toEqual(input.name)
         expect(policy.description).toEqual(input.description)
-        expect(policy.policyIdentifier).toEqual(input.policyIdentifier)
         expect(policy.type).toEqual(input.type)
         expect(policy.periodType).toEqual(input.periodType)
         expect(policy.periodValue).toEqual(input.periodValue)

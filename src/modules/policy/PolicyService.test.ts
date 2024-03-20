@@ -20,14 +20,12 @@ describe('Create new document policy SERVICE unit tests', () => {
 
         const policy = await service.createNewDocumentPolicy(input)
 
-        expect(policy).toBeInstanceOf(Policy)
         expect(policy.id.length).toEqual(36)
         expect(policy.name).toEqual(input.name)
         expect(policy.description).toEqual(input.description)
         expect(policy.type).toEqual(PolicyTypeEnum.DOCUMENT)
         expect(policy.periodType).toEqual(input.periodType)
         expect(policy.periodValue).toEqual(input.periodValue)
-        expect(policy.version).toEqual(1)
     })
 
 })
@@ -47,14 +45,12 @@ describe('Create new person policy SERVICE unit tests', () => {
 
         const policy = await service.createNewPersonPolicy(input)
 
-        expect(policy).toBeInstanceOf(Policy)
         expect(policy.id.length).toEqual(36)
         expect(policy.name).toEqual(input.name)
         expect(policy.description).toBeNull()
         expect(policy.type).toEqual(PolicyTypeEnum.PERSON)
         expect(policy.periodType).toEqual(input.periodType)
         expect(policy.periodValue).toEqual(input.periodValue)
-        expect(policy.version).toEqual(1)
     })
 
 })
@@ -85,12 +81,10 @@ describe('Update policy SERVICE unit tests', () => {
         }
         const updatedPolicy = await service.updatePolicy(policy.id, inputUpdate)
 
-        expect(updatedPolicy).toBeInstanceOf(Policy)
         expect(updatedPolicy.name).toEqual(inputUpdate.name)
         expect(updatedPolicy.description).toEqual(inputUpdate.description)
         expect(updatedPolicy.periodType).toEqual(inputUpdate.periodType)
         expect(updatedPolicy.periodValue).toEqual(inputUpdate.periodValue)
-        expect(updatedPolicy.version).toEqual(2)
         expect(updatedPolicy.id).toEqual(policy.id)
     })
 

@@ -1,15 +1,15 @@
 import { randomUUID } from 'crypto'
 import Policy, { PolicyTypeEnum } from './Policy'
 import PolicyRepository from './PolicyRepository'
-import { CreateNewDocumentPolicyInputDTO } from './dto/CreateNewDocumentPolicyDTO'
-import { CreateNewPersonPolicyInputDTO } from './dto/CreateNewPersonPolicyDTO'
-import { UpdatePolicyInputDTO } from './dto/UpdatePolicyDTO'
+import { CreateNewDocumentPolicyInputDTO, CreateNewDocumentPolicyOutputDTO } from './dto/CreateNewDocumentPolicyDTO'
+import { CreateNewPersonPolicyInputDTO, CreateNewPersonPolicyOutputDTO } from './dto/CreateNewPersonPolicyDTO'
+import { UpdatePolicyInputDTO, UpdatePolicyOutputDTO } from './dto/UpdatePolicyDTO'
 
 export default class PolicyService {
 
     constructor(private readonly policyRepository: PolicyRepository) { }
 
-    async createNewDocumentPolicy(data: CreateNewDocumentPolicyInputDTO): Promise<Policy> {
+    async createNewDocumentPolicy(data: CreateNewDocumentPolicyInputDTO): Promise<CreateNewDocumentPolicyOutputDTO> {
 
         const policy = new Policy({
             id: randomUUID(),
@@ -22,11 +22,18 @@ export default class PolicyService {
         })
 
         await this.policyRepository.save(policy)
-        return policy
 
+        return {
+            id: policy.id,
+            name: policy.name,
+            description: policy.description,
+            type: policy.type,
+            periodType: policy.periodType,
+            periodValue: policy.periodValue
+        }
     }
 
-    async createNewPersonPolicy(data: CreateNewPersonPolicyInputDTO): Promise<Policy> {
+    async createNewPersonPolicy(data: CreateNewPersonPolicyInputDTO): Promise<CreateNewPersonPolicyOutputDTO> {
 
         const policy = new Policy({
             id: randomUUID(),
@@ -39,10 +46,18 @@ export default class PolicyService {
         })
 
         await this.policyRepository.save(policy)
-        return policy
+
+        return {
+            id: policy.id,
+            name: policy.name,
+            description: policy.description,
+            type: policy.type,
+            periodType: policy.periodType,
+            periodValue: policy.periodValue
+        }
     }
 
-    async updatePolicy(id: string, newData: UpdatePolicyInputDTO): Promise<Policy> {
+    async updatePolicy(id: string, newData: UpdatePolicyInputDTO): Promise<UpdatePolicyOutputDTO> {
 
         const policy = await this.policyRepository.findById(id)
 
@@ -60,8 +75,15 @@ export default class PolicyService {
         newPolicy.updateVersion()
 
         await this.policyRepository.save(newPolicy)
-        return newPolicy
 
+        return {
+            id: newPolicy.id,
+            name: newPolicy.name,
+            description: newPolicy.description,
+            type: newPolicy.type,
+            periodType: newPolicy.periodType,
+            periodValue: newPolicy.periodValue
+        }
     }
 
 }

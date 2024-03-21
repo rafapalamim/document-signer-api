@@ -1,5 +1,5 @@
-import BaseModel from '../../@core/domain/BaseModel'
-import { BaseType } from '../../@core/domain/BaseType'
+import BaseModel from '../../@core/modules/BaseModel'
+import { BaseType } from '../../@core/modules/BaseType'
 
 export enum PolicyTypeEnum {
     DOCUMENT = 'document',

@@ -26,5 +26,11 @@ describe('Action dispatcher test', () => {
 
         console.log(result)
 
+        // dispatcher.runAll({
+        //     name: 'test',
+        //     description: 'test d',
+        //     periodType: PolicyPeriodTypeEnum.YEAR,
+        //     periodValue: 5
+        // }).then((res2) => console.log(res2))
     })
 })

@@ -1,6 +1,7 @@
 import { PolicyPeriodTypeEnum, PolicyTypeEnum } from '../Policy'
 
 export type UpdatePolicyInputDTO = {
+    id: string,
     name?: string,
     description?: string,
     periodType?: PolicyPeriodTypeEnum,

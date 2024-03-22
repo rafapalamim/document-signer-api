@@ -1,22 +1,22 @@
 import { randomUUID } from 'crypto'
 import Policy, { PolicyTypeEnum } from '../Policy'
-import { CreateNewDocumentPolicyInputDTO, CreateNewDocumentPolicyOutputDTO } from '../dto/CreateNewDocumentPolicyDTO'
 import Action from '../../../@core/modules/actions/Action'
+import { CreateNewPersonPolicyInputDTO, CreateNewPersonPolicyOutputDTO } from '../dto/CreateNewPersonPolicyDTO'
 import { PolicyActionsEnum } from './Policy.action'
 import { PolicyRepository } from '../PolicyRepository'
 
-export default class CreateDocumentPolicyAction extends Action {
+export default class CreatePersonPolicyAction extends Action {
 
     constructor(private readonly repository: PolicyRepository) {
-        super(PolicyActionsEnum.CREATE_DOCUMENT_POLICY)
+        super(PolicyActionsEnum.CREATE_PERSON_POLICY)
     }
 
-    async execute(data: CreateNewDocumentPolicyInputDTO): Promise<CreateNewDocumentPolicyOutputDTO> {
+    async execute(data: CreateNewPersonPolicyInputDTO): Promise<CreateNewPersonPolicyOutputDTO> {
         const policy = new Policy({
             id: randomUUID(),
             name: data.name,
             description: data.description ?? null,
-            type: PolicyTypeEnum.DOCUMENT,
+            type: PolicyTypeEnum.PERSON,
             periodType: data.periodType,
             periodValue: data.periodValue,
             version: 1

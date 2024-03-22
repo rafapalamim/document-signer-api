@@ -15,17 +15,17 @@ export default class ActionDispatcher {
         })
     }
 
-    removeAction(actionName: string) : void {
+    removeAction(actionName: string): void {
         const newList = this.actions.filter((action) => action.name !== actionName)
         this.actions = newList
     }
 
-    clearActions() : void {
+    clearActions(): void {
         this.actions = []
     }
 
-    async run<I,O>(actioName: string, data: I): Promise<O> {
-        const findAction = this.actions.find((action) => action.name === actioName)
+    async runSync<I, O>(actionName: string, data: I): Promise<O> {
+        const findAction = this.actions.find((action) => action.name === actionName)
         if (!findAction) throw new Error('Ação não encontrada')
         return await findAction.execute(data)
     }

@@ -8,8 +8,8 @@ class ActionMock extends Action {
         super('TEST_ACTION')
     }
 
-    async execute(): Promise<any> {
-        return await Promise.resolve(true)
+    async execute(): Promise<{ id: number }> {
+        return { id: 1 }
     }
 }
 
@@ -19,8 +19,8 @@ class AnotherActionMock extends Action {
         super('TEST_ACTION_2')
     }
 
-    async execute(): Promise<any> {
-        return await Promise.resolve(true)
+    async execute(): Promise<{ id: number }> {
+        return { id: 2 }
     }
 }
 
@@ -43,7 +43,8 @@ describe('Action dispatcher unit test', () => {
         const spyExecute = jest.spyOn(actions[0], 'execute')
         const spyExecute2 = jest.spyOn(actions[1], 'execute')
 
-        await dispatcher.run('TEST_ACTION', {})
+        await dispatcher.runSync<object, { id: number }>('TEST_ACTION', {})
+
         expect(spyExecute).toHaveBeenCalled()
         expect(spyExecute2).not.toHaveBeenCalled()
 
@@ -54,8 +55,8 @@ describe('Action dispatcher unit test', () => {
         const spyExecute = jest.spyOn(actions[0], 'execute')
         const spyExecute2 = jest.spyOn(actions[1], 'execute')
 
-        await dispatcher.run('TEST_ACTION', {})
-        await dispatcher.run('TEST_ACTION_2', {})
+        await dispatcher.runSync<object, { id: number }>('TEST_ACTION', {})
+        await dispatcher.runSync<object, { id: number }>('TEST_ACTION_2', {})
 
         expect(spyExecute).toHaveBeenCalled()
         expect(spyExecute2).toHaveBeenCalled()

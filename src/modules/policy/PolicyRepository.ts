@@ -1,5 +1,5 @@
-import { BaseFindAllMethod } from '../../@core/modules/BaseFindAllMethod'
-import BaseRepository from '../../@core/modules/BaseRepository'
+import { BaseFindAllMethod } from '../../@core/repositories/BaseFindAllMethod'
+import BaseRepository from '../../@core/repositories/BaseRepository'
 import Policy, { PolicyPeriodTypeEnum, PolicyTypeEnum } from './Policy'
 
 export type PolicyFindAllOptions = BaseFindAllMethod<{

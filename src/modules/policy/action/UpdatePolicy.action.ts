@@ -1,5 +1,5 @@
 import Policy from '../Policy'
-import Action from '../../../@core/modules/actions/Action'
+import Action from '../../../@core/actions/Action'
 import { UpdatePolicyInputDTO, UpdatePolicyOutputDTO } from '../dto/UpdatePolicyDTO'
 import { PolicyActionsEnum } from './Policy.action'
 import { PolicyRepository } from '../PolicyRepository'

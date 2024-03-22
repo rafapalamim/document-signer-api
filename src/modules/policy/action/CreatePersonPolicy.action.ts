@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto'
 import Policy, { PolicyTypeEnum } from '../Policy'
-import Action from '../../../@core/modules/actions/Action'
+import Action from '../../../@core/actions/Action'
 import { CreateNewPersonPolicyInputDTO, CreateNewPersonPolicyOutputDTO } from '../dto/CreateNewPersonPolicyDTO'
 import { PolicyActionsEnum } from './Policy.action'
 import { PolicyRepository } from '../PolicyRepository'

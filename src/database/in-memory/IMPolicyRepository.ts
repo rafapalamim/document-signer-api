@@ -1,7 +1,8 @@
 import Policy from '../../modules/policy/Policy'
-import PolicyRepository from '../../modules/policy/PolicyRepository'
+import { PolicyFindAllOptions, PolicyRepository } from '../../modules/policy/PolicyRepository'
 
-export default class IMPolicyRepository implements PolicyRepository {
+
+export default class IMPolicyRepository implements PolicyRepository { 
 
     private rows: Policy[] = []
 
@@ -16,13 +17,14 @@ export default class IMPolicyRepository implements PolicyRepository {
         return find
     }
 
-    async findAll(): Promise<Policy[]> {
+    async findAll(options: PolicyFindAllOptions): Promise<Policy[]> {
+        if (options.withDeleted) return this.rows
         return this.rows.filter((policy) => policy.deletedAt !== null)
     }
 
     async delete(id: string): Promise<void> {
         this.rows.map((policy) => {
-            if(policy.id === id && policy.deletedAt === null) policy.markAsDeleted()
+            if (policy.id === id && policy.deletedAt === null) policy.markAsDeleted()
         })
     }
 

@@ -29,8 +29,4 @@ export default class ActionDispatcher {
         if (!findAction) throw new Error('Ação não encontrada')
         return await findAction.execute(data)
     }
-
-    // async runAll<I>(data: I) : Promise<any> {
-    //     return Promise.all(this.actions.map((action) => new Promise((resolve) => resolve(action.execute(data)))))
-    // }
 }
